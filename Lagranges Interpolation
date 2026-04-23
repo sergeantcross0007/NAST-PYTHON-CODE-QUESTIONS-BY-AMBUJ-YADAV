@@ -1,0 +1,39 @@
+# Lagrange Interpolation Method
+# Find f(2.7) using given data
+
+# Given values
+x = [2, 2.5, 3]
+y = [0.69315, 0.91629, 1.09861]
+
+# Value at which interpolation is required
+xp = 2.7
+
+n = len(x)
+yp = 0
+
+print("Lagrange Interpolation Calculation:\n")
+
+# Applying Lagrange formula
+for i in range(n):
+    p = 1
+
+    for j in range(n):
+        if i != j:
+            p = p * (xp - x[j]) / (x[i] - x[j])
+
+    yp = yp + p * y[i]
+
+    print(f"Term {i+1} = {p:.5f} × {y[i]} = {(p * y[i]):.6f}")
+
+print("\nSolution of the polynomial at point", xp, "is")
+print("y(", xp, ") =", round(yp, 6))
+
+OUTPUT:-
+Lagrange Interpolation Calculation:
+
+Term 1 = -0.12000 × 0.69315 = -0.083178
+Term 2 = 0.84000 × 0.91629 = 0.769684
+Term 3 = 0.28000 × 1.09861 = 0.307611
+
+Solution of the polynomial at point 2.7 is
+y( 2.7 ) = 0.994116
