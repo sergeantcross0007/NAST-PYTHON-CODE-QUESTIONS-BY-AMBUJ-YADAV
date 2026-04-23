@@ -1,0 +1,29 @@
+# False Position (Regula Falsi) Method for solving
+# f(x) = x^3 - x - 1
+
+def f(x):
+    return x**3 - x - 1
+
+# Initial values
+x0 = 1
+x1 = 2
+
+# Check if root exists in the interval
+if f(x0) * f(x1) > 0:
+    print("False Position method cannot be applied.")
+else:
+    print("n\t x0\t\t f(x0)\t\t x1\t\t f(x1)\t\t x2\t\t f(x2)")
+
+    for n in range(1, 11):
+        # False Position formula
+        x2 = x0 - (f(x0) * (x1 - x0)) / (f(x1) - f(x0))
+
+        print(f"{n}\t {x0:.5f}\t {f(x0):.5f}\t {x1:.5f}\t {f(x1):.5f}\t {x2:.5f}\t {f(x2):.5f}")
+
+        # Update interval
+        if f(x0) * f(x2) < 0:
+            x1 = x2
+        else:
+            x0 = x2
+
+    print("\nApproximate root of the equation is:", round(x2, 5))
