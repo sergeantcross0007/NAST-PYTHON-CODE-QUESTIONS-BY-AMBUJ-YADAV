@@ -22,3 +22,13 @@ for n in range(1, 5):
     x0 = x1
 
 print("\nApproximate root of the equation is:", round(x1, 5))
+
+
+OUTPUT:-
+n	 x0		 f(x0)		 f'(x0)		 x1		 Update
+1	 1.50000	 0.87500	 5.75000	 1.34783	 x0 = x1
+2	 1.34783	 0.10068	 4.44991	 1.32520	 x0 = x1
+3	 1.32520	 0.00206	 4.26847	 1.32472	 x0 = x1
+4	 1.32472	 0.00000	 4.26463	 1.32472	 x0 = x1
+
+Approximate root of the equation is: 1.32472
