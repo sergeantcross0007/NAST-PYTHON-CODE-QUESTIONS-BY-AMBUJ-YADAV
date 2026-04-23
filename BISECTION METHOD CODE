@@ -1,0 +1,32 @@
+# Bisection Method for solving f(x) = x^3 - x - 1
+
+def f(x):
+    return x**3 - x - 1
+
+# Initial interval
+a = 1
+b = 2
+
+# Check if root exists in the interval
+if f(a) * f(b) > 0:
+    print("Bisection method cannot be applied.")
+else:
+    print("n\t a\t\t f(a)\t\t b\t\t f(b)\t\t c=(a+b)/2\t f(c)")
+    
+    n = 1
+    while n <= 11:
+        c = (a + b) / 2
+        
+        print(f"{n}\t {a:.5f}\t {f(a):.5f}\t {b:.5f}\t {f(b):.5f}\t {c:.5f}\t\t {f(c):.5f}")
+        
+        # Check which side root lies
+        if f(a) * f(c) < 0:
+            b = c
+        else:
+            a = c
+        
+        n += 1
+
+    print("\nApproximate root of the equation is:", round(c, 5))
+
+
