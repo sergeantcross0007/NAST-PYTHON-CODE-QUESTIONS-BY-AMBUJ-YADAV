@@ -1,0 +1,24 @@
+# Newton-Raphson Method for solving f(x) = x^3 - x - 1
+
+def f(x):
+    return x**3 - x - 1
+
+# Derivative of f(x)
+def df(x):
+    return 3 * x**2 - 1
+
+# Initial guess
+x0 = 1.5
+
+print("n\t x0\t\t f(x0)\t\t f'(x0)\t\t x1\t\t Update")
+
+for n in range(1, 5):
+    # Newton-Raphson formula
+    x1 = x0 - (f(x0) / df(x0))
+
+    print(f"{n}\t {x0:.5f}\t {f(x0):.5f}\t {df(x0):.5f}\t {x1:.5f}\t x0 = x1")
+
+    # Update x0
+    x0 = x1
+
+print("\nApproximate root of the equation is:", round(x1, 5))
