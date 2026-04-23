@@ -1,0 +1,96 @@
+# Curve Fitting using Least Squares Method
+# Fitting a second degree parabola: y = a + bx + cx^2
+
+import numpy as np
+
+# Given data
+x = np.array([1, 2, 3, 4, 5, 6, 7], dtype=float)
+y = np.array([-5, -2, 5, 16, 31, 50, 73], dtype=float)
+
+n = len(x)
+
+# Required values
+x2 = x**2
+x3 = x**3
+x4 = x**4
+xy = x * y
+x2y = x2 * y
+
+# Summations
+sum_x = np.sum(x)
+sum_y = np.sum(y)
+sum_x2 = np.sum(x2)
+sum_x3 = np.sum(x3)
+sum_x4 = np.sum(x4)
+sum_xy = np.sum(xy)
+sum_x2y = np.sum(x2y)
+
+# Display table
+print("x\t y\t x^2\t x^3\t x^4\t x*y\t x^2*y")
+for i in range(n):
+    print(f"{int(x[i])}\t {int(y[i])}\t {int(x2[i])}\t {int(x3[i])}\t {int(x4[i])}\t {int(xy[i])}\t {int(x2y[i])}")
+
+print("\nSummations:")
+print("Σx =", int(sum_x))
+print("Σy =", int(sum_y))
+print("Σx² =", int(sum_x2))
+print("Σx³ =", int(sum_x3))
+print("Σx⁴ =", int(sum_x4))
+print("Σxy =", int(sum_xy))
+print("Σx²y =", int(sum_x2y))
+
+# Normal equations matrix
+A = np.array([
+    [n, sum_x, sum_x2],
+    [sum_x, sum_x2, sum_x3],
+    [sum_x2, sum_x3, sum_x4]
+])
+
+B = np.array([sum_y, sum_xy, sum_x2y])
+
+# Solve for a, b, c
+a, b, c = np.linalg.solve(A, B)
+
+print("\nValues obtained:")
+print("a =", round(a))
+print("b =", round(b))
+print("c =", round(c))
+
+print("\nFitted second degree parabola is:")
+print(f"y = {round(a):.0f} + ({round(b):.0f})x + ({round(c):.0f})x²")
+
+print("\nTherefore, the equation is:")
+print("y = -4 - 3x + 2x²")
+
+
+
+OUTPUT:-
+
+x	 y	 x^2	 x^3	 x^4	 x*y	 x^2*y
+1	 -5	 1	 1	 1	 -5	 -5
+2	 -2	 4	 8	 16	 -4	 -8
+3	 5	 9	 27	 81	 15	 45
+4	 16	 16	 64	 256	 64	 256
+5	 31	 25	 125	 625	 155	 775
+6	 50	 36	 216	 1296	 300	 1800
+7	 73	 49	 343	 2401	 511	 3577
+
+Summations:
+Σx = 28
+Σy = 168
+Σx² = 140
+Σx³ = 784
+Σx⁴ = 4676
+Σxy = 1036
+Σx²y = 6440
+
+Values obtained:
+a = -4
+b = -3
+c = 2
+
+Fitted second degree parabola is:
+y = -4 + (-3)x + (2)x²
+
+Therefore, the equation is:
+y = -4 - 3x + 2x²
