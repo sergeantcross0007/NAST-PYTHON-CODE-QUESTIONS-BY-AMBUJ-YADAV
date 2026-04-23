@@ -1,0 +1,68 @@
+# Newton's Forward Difference Interpolation Method
+# Find f(1895)
+
+# Given data
+x = [1891, 1901, 1911, 1921, 1931]
+y = [46, 66, 81, 93, 101]
+
+# Value at which interpolation is required
+xp = 1895
+
+n = len(x)
+
+# Create forward difference table
+diff = [y.copy()]
+
+for i in range(1, n):
+    temp = []
+    for j in range(n - i):
+        value = diff[i - 1][j + 1] - diff[i - 1][j]
+        temp.append(value)
+    diff.append(temp)
+
+# Display forward difference table
+print("Newton's Forward Difference Table:\n")
+print("x\t y\t Δy\t Δ²y\t Δ³y\t Δ⁴y")
+
+for i in range(n):
+    print(x[i], end="\t ")
+    for j in range(n - i):
+        print(diff[j][i] if i < len(diff[j]) else "", end="\t ")
+    print()
+
+# Calculate h and p
+h = x[1] - x[0]
+p = (xp - x[0]) / h
+
+print("\nh =", h)
+print("p =", round(p, 2))
+
+# Newton Forward Formula
+result = y[0]
+fact = 1
+p_term = 1
+
+for i in range(1, n):
+    p_term = p_term * (p - (i - 1))
+    fact = fact * i
+    result = result + (p_term * diff[i][0]) / fact
+
+print("\nSolution using Newton's Forward Difference Formula:")
+print(f"y({xp}) = {round(result, 4)}")
+
+
+OUTPUT:-
+Newton's Forward Difference Table:
+
+x	 y	 Δy	 Δ²y	 Δ³y	 Δ⁴y
+1891	 46	 20	 -5	 2	 -3	 
+1901	 66	 15	 -3	 -1	 
+1911	 81	 12	 -4	 
+1921	 93	 8	 
+1931	 101	 
+
+h = 10
+p = 0.4
+
+Solution using Newton's Forward Difference Formula:
+y(1895) = 54.8528
