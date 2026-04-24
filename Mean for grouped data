@@ -1,0 +1,45 @@
+# Calculate Mean from Grouped Data
+
+# Given data
+x = [0, 1, 2, 3, 4]
+f = [1, 5, 10, 6, 3]
+
+# Calculate f*x
+fx = []
+
+for i in range(len(x)):
+    fx.append(x[i] * f[i])
+
+# Find total frequency and total fx
+n = sum(f)
+sum_fx = sum(fx)
+
+# Display table
+print("x\t Frequency(f)\t f*x")
+for i in range(len(x)):
+    print(f"{x[i]}\t {f[i]}\t\t {fx[i]}")
+
+print("\nTotal Frequency (n) =", n)
+print("Sum of f*x =", sum_fx)
+
+# Mean formula
+mean = sum_fx / n
+
+print("\nMean = Σ(fx) / n")
+print(f"Mean = {sum_fx} / {n}")
+print("Mean =", round(mean, 2))
+
+OUTPUT:-
+x	 Frequency(f)	 f*x
+0	 1		 0
+1	 5		 5
+2	 10		 20
+3	 6		 18
+4	 3		 12
+
+Total Frequency (n) = 25
+Sum of f*x = 55
+
+Mean = Σ(fx) / n
+Mean = 55 / 25
+Mean = 2.2
