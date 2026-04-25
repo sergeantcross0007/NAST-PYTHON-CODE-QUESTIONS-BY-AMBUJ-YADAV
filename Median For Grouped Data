@@ -1,0 +1,79 @@
+# Calculate Median from Grouped Data
+
+# Given class intervals and frequencies
+classes = [(2, 4), (4, 6), (6, 8), (8, 10)]
+f = [3, 4, 2, 1]
+
+# Calculate cumulative frequency
+cf = []
+total = 0
+
+for freq in f:
+    total += freq
+    cf.append(total)
+
+# Display table
+print("Class Interval\tFrequency\tCumulative Frequency")
+for i in range(len(classes)):
+    print(f"{classes[i][0]} - {classes[i][1]}\t\t{f[i]}\t\t{cf[i]}")
+
+print("--------------------------------------------------")
+print("Total Frequency (n) =", total)
+
+# Find n/2
+n = total
+half = n / 2
+
+# Find median class
+for i in range(len(cf)):
+    if cf[i] >= half:
+        median_index = i
+        break
+
+# Values for Median Formula
+L = classes[median_index][0]   # Lower boundary
+f_med = f[median_index]        # Frequency of median class
+cf_prev = cf[median_index - 1] # Cumulative frequency before median class
+c = classes[median_index][1] - classes[median_index][0]  # Class width
+
+# Median Formula
+median = L + ((half - cf_prev) / f_med) * c
+
+print("\nValue of n/2 =", half)
+print("Median Class = 4 - 6")
+
+print("\nValues used:")
+print("L =", L)
+print("n =", n)
+print("cf =", cf_prev)
+print("f =", f_med)
+print("c =", c)
+
+print("\nMedian Formula:")
+print("Median = L + ((n/2 - cf) / f) * c")
+
+print("\nMedian =", round(median, 2))
+
+OUTPUT:-
+Class Interval	Frequency	Cumulative Frequency
+2 - 4		3		3
+4 - 6		4		7
+6 - 8		2		9
+8 - 10		1		10
+--------------------------------------------------
+Total Frequency (n) = 10
+
+Value of n/2 = 5.0
+Median Class = 4 - 6
+
+Values used:
+L = 4
+n = 10
+cf = 3
+f = 4
+c = 2
+
+Median Formula:
+Median = L + ((n/2 - cf) / f) * c
+
+Median = 5.0
