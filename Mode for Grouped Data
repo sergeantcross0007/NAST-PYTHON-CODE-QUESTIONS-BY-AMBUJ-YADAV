@@ -1,0 +1,67 @@
+# Calculate Mode from Grouped Data
+
+# Given class intervals and frequencies
+classes = [(2, 4), (4, 6), (6, 8), (8, 10)]
+f = [3, 4, 2, 1]
+
+# Display table
+print("Class Interval\tFrequency")
+for i in range(len(classes)):
+    print(f"{classes[i][0]} - {classes[i][1]}\t\t{f[i]}")
+
+print("-------------------------")
+print("Total (n)\t\t", sum(f))
+
+# Find modal class
+max_freq = max(f)
+mode_index = f.index(max_freq)
+
+# Values for Mode Formula
+L = classes[mode_index][0]   # Lower boundary
+f1 = f[mode_index]           # Modal class frequency
+f0 = f[mode_index - 1]       # Preceding class frequency
+f2 = f[mode_index + 1]       # Succeeding class frequency
+c = classes[mode_index][1] - classes[mode_index][0]  # Class width
+
+# Mode Formula
+mode = L + ((f1 - f0) / (2 * f1 - f0 - f2)) * c
+
+print("\nMaximum frequency =", max_freq)
+print("Modal Class = 4 - 6")
+
+print("\nValues used:")
+print("L =", L)
+print("f1 =", f1)
+print("f0 =", f0)
+print("f2 =", f2)
+print("c =", c)
+
+print("\nMode Formula:")
+print("Z = L + ((f1 - f0) / (2*f1 - f0 - f2)) * c")
+
+print("\nMode = ", round(mode, 4))
+
+OUTPUT:-
+
+Class Interval	Frequency
+2 - 4		3
+4 - 6		4
+6 - 8		2
+8 - 10		1
+-------------------------
+Total (n)		 10
+
+Maximum frequency = 4
+Modal Class = 4 - 6
+
+Values used:
+L = 4
+f1 = 4
+f0 = 3
+f2 = 2
+c = 2
+
+Mode Formula:
+Z = L + ((f1 - f0) / (2*f1 - f0 - f2)) * c
+
+Mode =  4.6667
